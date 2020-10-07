@@ -17,7 +17,7 @@ app.post('/server/signin', (req,res) => {
 })
 
 app.post('/server/signup', (req,res) => {
-  let {username, email, password} = req.body
+  let {username, email, password, category} = req.body
 
 })
 
