@@ -10,13 +10,27 @@ const App = () => {
     // state for if user is logged in (initially set to false)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    // log in (also applies to signing up)
+    const logIn = () => {
+        setIsLoggedIn(true);
+    };
+
+    // log out
+    const logOut = () => {
+        setIsLoggedIn(false);
+    };
+
     return (
         <div className="ui container">
             <BrowserRouter>
-                <Header loginStatus={isLoggedIn} />
+                <Header isLoggedIn={isLoggedIn} />
                 <Route path="/" exact component={Home} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/signup" exact component={Signup} />
+                <Route path="/login" exact 
+                    render={() => <Login loginFunc={logIn} />} 
+                />
+                <Route path="/signup" exact 
+                    render={() => <Signup loginFunc={logIn} />}
+                />
             </BrowserRouter>
 
         </div>

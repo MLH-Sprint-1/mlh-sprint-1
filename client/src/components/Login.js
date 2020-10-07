@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ loginFunc }) => {
     return (
         <div>
             <form className="ui large form">
@@ -19,7 +19,7 @@ const Login = () => {
                         </div>
                     </div>
                     <Link to="/">
-                        <button className="ui fluid large teal submit button">Login</button>
+                        <button onClick={loginFunc} className="ui fluid large teal submit button">Login</button>
                     </Link>
                 </div>
 
