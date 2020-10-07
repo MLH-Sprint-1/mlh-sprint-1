@@ -6,8 +6,8 @@ function Choice(){
 
   return (
     <div>
-      {choices.map((item) => <ChoiceItem text ={item}/>)}
-    </div>    
+      {choices.map((item) => <ChoiceItem key={item} text ={item}/>)}
+    </div>
   )
 }
 

@@ -5,6 +5,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import Choice from './Choice'
+import Question from './Question'
 
 const App = () => {
 
@@ -18,6 +19,9 @@ const App = () => {
           <Switch>
             <Route exact path='/'>
               <Choice/>
+            </Route>
+            <Route exact path='/question'>
+              <Question />
             </Route>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
