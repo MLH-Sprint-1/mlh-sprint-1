@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = ({ loginStatus }) => {
+const Header = () => {
 
     // if user is logged in, should display 'Logout'
     // else, should show 'Login' and 'Signup'
