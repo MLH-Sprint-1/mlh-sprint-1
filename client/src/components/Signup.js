@@ -24,8 +24,8 @@ const Signup = () => {
                             <input type="password" name="password" placeholder="Password" />
                         </div>
                     </div>
-                    <Link to="/">
-                        <button className="ui fluid large teal submit button">Login</button>
+                    <Link to="/choices">
+                        <button className="ui fluid large teal submit button">Signup</button>
                     </Link>
                 </div>
 
