@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import Logout from './Logout';
 
 const App = () => {
 
@@ -30,6 +31,9 @@ const App = () => {
                 />
                 <Route path="/signup" exact 
                     render={() => <Signup loginFunc={logIn} />}
+                />
+                <Route path="/logout" exact 
+                    render={() => <Logout logoutFunc={logOut} />}
                 />
             </BrowserRouter>
 

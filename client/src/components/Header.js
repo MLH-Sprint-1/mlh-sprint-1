@@ -18,7 +18,7 @@ const Header = ({ isLoggedIn }) => {
     const optionsSignOut = (
         <React.Fragment>
             <span className="item">Welcome!</span>
-            <Link to="/" className="item">
+            <Link to="/logout" className="item">
                 Logout
             </Link>
         </React.Fragment>
