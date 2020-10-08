@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
-import Home from './Home';
-import Login from './Login';
-import Signup from './Signup';
-import Logout from './Logout';
+import Home from './Content/Home';
+import Login from './SignIn/Login';
+import Signup from './SignIn/Signup';
+import Logout from './SignIn/Logout';
 
 const App = () => {
 
@@ -25,7 +25,9 @@ const App = () => {
         <div className="ui container">
             <BrowserRouter>
                 <Header isLoggedIn={isLoggedIn} />
-                <Route path="/" exact component={Home} />
+                <Route path="/" exact 
+                    render={() => <Home isLoggedIn={isLoggedIn} />}
+                />
                 <Route path="/login" exact 
                     render={() => <Login loginFunc={logIn} />} 
                 />
