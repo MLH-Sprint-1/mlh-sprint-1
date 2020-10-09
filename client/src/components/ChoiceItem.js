@@ -8,7 +8,7 @@ function ChoiceItem(props) {
     if(props.state === 'ask'){
       history.push('/question')
     }else{
-      
+      history.push('/question-list')
     }
 
   }

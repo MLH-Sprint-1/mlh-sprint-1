@@ -6,6 +6,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Choice from './Choice'
 import Question from './Question'
+import QuestionList from './QuestionList'
 
 const App = () => {
 
@@ -22,6 +23,9 @@ const App = () => {
             </Route>
             <Route exact path='/question'>
               <Question />
+            </Route>
+            <Route exact path='/question-list'>
+              <QuestionList />
             </Route>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
