@@ -6,18 +6,18 @@ app.use(express.json())
 
 
 app.post('/server/send-problem', (req,res) => {
-  let {department, courseTitle, year, topic, problem} = req.body
+  let {topic, request} = req.body
 
 
 })
 
-app.post('/server/signin', (req,res) => {
+app.post('/server/login', (req,res) => {
   let {email, password} = req.body
 
 })
 
 app.post('/server/signup', (req,res) => {
-  let {username, email, password, category} = req.body
+  let {firstName, lastName, email, password, accountType} = req.body
 
 })
 
