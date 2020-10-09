@@ -3,7 +3,7 @@ import React from 'react';
 const Welcome = () => {
     return (
         <div>
-            How We Benefit:
+            How We Help:
             <div className="ui cards">
                 <div className="card">
                     <div className="content">
@@ -12,8 +12,8 @@ const Welcome = () => {
                         </div>
                         <div className="description">
                             <ul>
-                                <li>reason 1</li>
-                                <li>reason 2</li>
+                                <li>Ask/Answer questions about your lectures and see related questions from fellow students</li>
+                                <li>Earn credit for helping your peers and redeem for grade improvement</li>
                             </ul>
                         </div>
                     </div>
@@ -25,8 +25,11 @@ const Welcome = () => {
                         </div>
                         <div className="description">
                             <ul>
-                                <li>reason 1</li>
-                                <li>reason 2</li>
+                                <li>With students helping other students, your demand for office hours will lessen so you can focus on your other courses or projects</li>
+                                <li>See student solutions to problems so you can refine subsequent lectures</li>
+                                <li>Increase demand for your course with student incentive</li>
+                                <li>See data about your lectures such as who is asking questions about which points in the lecture</li>
+                                <li>Identify potential teaching assistants among your students</li>
                             </ul>
                         </div>
                     </div>

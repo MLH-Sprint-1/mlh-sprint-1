@@ -15,15 +15,22 @@ const Header = ({ isLoggedIn }) => {
                 </Link>
             </React.Fragment>
     );
-    const optionsSignOut = (
-        <React.Fragment>
-            <span className="item">Welcome!</span>
-            <Link to="/logout" className="item">
-                Logout
-            </Link>
-        </React.Fragment>
-    );
 
+    const optionsSignOut = (
+        <div className="ui simple dropdown item">
+            <i className="user icon" />
+            Welcome, Aneesh!
+            <i className="dropdown icon" />
+            <div className="menu">
+                <div className="item">Settings</div>
+                <Link to="/logout" className="item">
+                    Logout
+                </Link>
+            </div>
+        </div>
+    );
+    
+  
     const optionsDisplayed = isLoggedIn ? optionsSignOut : optionsSignIn;
 
     return (
