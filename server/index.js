@@ -20,6 +20,9 @@ firebase.initializeApp(firebaseConfig);
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+const db = firebase.firestore()
+const auth = firebase.auth()
+
 
 app.post('/server/send-problem', (req,res) => {
   let {topic, request} = req.body
@@ -29,7 +32,7 @@ app.post('/server/send-problem', (req,res) => {
 
 app.post('/server/login', (req,res) => {
   let {email, password} = req.body
-  firebase.auth().signInWithEmailAndPassword(email, password)
+  auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       console.log('success')
     }, (error) => {
@@ -40,9 +43,21 @@ app.post('/server/login', (req,res) => {
 
 app.post('/server/signup', (req,res) => {
   let {firstName, lastName, email, password, accountType} = req.body
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+  auth.createUserWithEmailAndPassword(email, password)
     .then(() => {
-      console.log('success')
+      
+      console.log('successful sign up')
+      db.collection('Users').add({
+        first_name: firstName,
+        last_name: lastName,
+        email_address: email,
+        account_type: accountType
+      }).then(() =>{
+        console.log('successfully saved data')
+      }, (error) =>{
+        console.log(error.message)
+      })
+
     }, (error) => {
       console.log(error.message)
     })
@@ -50,7 +65,7 @@ app.post('/server/signup', (req,res) => {
 })
 
 app.delete('/server/logout', (req,res) => {
-  firebase.auth().signOut().then(function() {
+  auth.signOut().then(function() {
     console.log('success')
   }).catch(function(error) {
     console.log(error.message)
