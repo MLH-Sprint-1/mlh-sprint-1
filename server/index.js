@@ -25,8 +25,29 @@ const auth = firebase.auth()
 
 
 app.post('/server/send-problem', (req,res) => {
-  let {topic, request} = req.body
+  let {topic, request, professor} = req.body
+  const user = auth.currentUser
+  db.collection('Questions').add({
+    request_by_id: `${user.uid}`,
+    topic: `${topic}`,
+    request: `${request}`,
+    request_date: `${new Date().toUTCString()}`,
+    status: 'open'
+  }).then(() => {
 
+    console.log('successfully saved question')
+    db.collection('Topic').doc(`${topic}`).set({
+      name: `${topic}`,
+      taught_by_id: `${professor}`
+    }).then(() => {
+      console.log('successfully saved topic')
+    }, (error) => {
+      console.log(error.message)
+    })
+
+  }, (error) => {
+    console.log(error.message)
+  })
 
 })
 
@@ -45,13 +66,13 @@ app.post('/server/signup', (req,res) => {
   let {firstName, lastName, email, password, accountType} = req.body
   auth.createUserWithEmailAndPassword(email, password)
     .then(() => {
-      
+
       console.log('successful sign up')
-      db.collection('Users').add({
-        first_name: firstName,
-        last_name: lastName,
-        email_address: email,
-        account_type: accountType
+      db.collection("Users").add({
+        first_name: `${firstName}`,
+        last_name: `${lastName}`,
+        email_address: `${email}`,
+        account_type: `${accountType}`
       }).then(() =>{
         console.log('successfully saved data')
       }, (error) =>{
