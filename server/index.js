@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const firebase = require('firebase')
+const cors = require('cors')
 
 const app = express()
 
@@ -19,6 +20,7 @@ firebase.initializeApp(firebaseConfig);
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())
 
 const db = firebase.firestore()
 const auth = firebase.auth()
