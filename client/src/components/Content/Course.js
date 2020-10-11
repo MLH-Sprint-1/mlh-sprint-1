@@ -16,7 +16,7 @@ const Course = ({ courseList, courseSelected, selectCourse }) => {
     })
     return (
         <div>
-            <table className="ui collapsing celled table">
+            <table className="ui table">
                 <thead>
                     <tr>
                         <th>
