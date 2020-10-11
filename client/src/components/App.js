@@ -10,7 +10,7 @@ import Signin from './SignIn/Signin';
 const App = () => {
 
     // state for if user is logged in (initially set to false)
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     // log in (also applies to signing up)
     const logIn = () => {
