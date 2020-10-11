@@ -5,6 +5,7 @@ import Home from './Content/Home';
 import Login from './SignIn/Login';
 import Signup from './SignIn/Signup';
 import Logout from './SignIn/Logout';
+import Signin from './SignIn/Signin';
 
 const App = () => {
 
@@ -36,6 +37,9 @@ const App = () => {
                 />
                 <Route path="/logout" exact 
                     render={() => <Logout logoutFunc={logOut} />}
+                />
+                <Route path="/signin" exact
+                    render={() => <Signin loginFunc={logIn} />}
                 />
             </BrowserRouter>
 

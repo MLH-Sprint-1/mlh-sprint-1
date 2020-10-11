@@ -13,6 +13,9 @@ const Header = ({ isLoggedIn }) => {
                 <Link to="/signup" className="item">
                     Signup
                 </Link>
+                <Link to="/signin" className="item">
+                    Login/Signup
+                </Link>
             </React.Fragment>
     );
 

@@ -26,9 +26,9 @@ const Login = ({ loginFunc }) => {
                 {/*<div className="ui error message"></div>*/}
             </form>
 
-            <div className="ui message">
+            {/*<div className="ui message">
                 New Student or Professor? <Link to="/signup">Sign Up</Link>
-            </div>
+            </div>*/}
         </div>
     );
 };

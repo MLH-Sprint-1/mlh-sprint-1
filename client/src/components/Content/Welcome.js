@@ -26,14 +26,14 @@ const Welcome = () => {
     // function to iterate through array of benefits and create divs
     const benefitDivs = (benefitsArr) => {
         return benefitsArr.map(elem => {
-            return <div className="item">{elem}</div>
+            return <div key={elem} className="item">{elem}</div>
         });
     };
 
     // create divs for each type/benefit in array (of objects)
     const benefitsElem = benefits.map(benefit => {
         return (
-            <div className="column">
+            <div key={benefit['type']} className="column">
                 <h3 className="ui center aligned header">{benefit['type']}</h3>
                 <div className="ui clearing divider"></div>
                 <div className="ui bulleted list">

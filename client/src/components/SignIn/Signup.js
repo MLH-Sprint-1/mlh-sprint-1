@@ -50,9 +50,9 @@ const Signup = ({ loginFunc }) => {
                 {/*<div className="ui error message"></div>*/}
             </form>
 
-            <div className="ui message">
+            {/*<div className="ui message">
                 Already Have an Account? <Link to="/login">Login</Link>
-            </div>
+            </div>*/}
         </div>
     );
 };
