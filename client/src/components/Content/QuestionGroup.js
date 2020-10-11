@@ -10,6 +10,7 @@ const QuestionGroup = ({ groupList, groupSelected, selectGroup }) => {
     });
 
     return (
+
         <div>
             <select 
                 className="ui dropdown"
