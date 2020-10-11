@@ -24,6 +24,15 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 
 
+
+app.get('/server/get-questions', async (req, res) => {
+  const questions = await db.collection('Questions').where('status', '==', 'open').get()
+  questions.forEach(doc => {
+    console.log(doc.id, '=>', doc.data())
+  })
+})
+
+
 app.post('/server/send-problem', (req,res) => {
   let {topic, request, professor} = req.body
   const user = auth.currentUser
