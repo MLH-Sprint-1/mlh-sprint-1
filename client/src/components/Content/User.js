@@ -24,6 +24,7 @@ const User = () => {
         <div>
             <h1 className="ui header">Welcome, Aneesh!</h1>
             <Course courseList={courses} courseSelected={courseSelected} selectCourse={selectCourse} />
+            Question Type: 
             <QuestionGroup groupList={questionGroups} groupSelected={questionGroupSelected} selectGroup={selectQuestionGroup} />
         </div>
     );
