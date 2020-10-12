@@ -24,11 +24,19 @@ const Signup = ({ loginFunc }) => {
                         <label>Signing up as a:</label>
                         {userCategoryRadioButtons}
                     </div>
-                    <div className="field">
-                            <div className="ui left icon input">
-                                <i className="user icon" />
-                                <input type="text" name="name" placeholder="Name" />
-                            </div>
+                    <div className="two fields">
+                        <div className="field">
+                                <div className="ui left icon input">
+                                    <i className="user icon" />
+                                    <input type="text" name="firstname" placeholder="First Name" />
+                                </div>
+                        </div>
+                        <div className="field">
+                                <div className="ui left icon input">
+                                    <i className="user icon" />
+                                    <input type="text" name="lastname" placeholder="Last Name" />
+                                </div>
+                        </div>
                     </div>
                     <div className="field">
                         <div className="ui left icon input">
