@@ -36,6 +36,7 @@ const Header = ({ isLoggedIn }) => {
   
     const optionsDisplayed = isLoggedIn ? optionsSignOut : optionsSignIn;
 
+
     return (
         <div className="ui secondary pointing menu">
             <Link to='/' className="item">
@@ -43,6 +44,7 @@ const Header = ({ isLoggedIn }) => {
             </Link>
             <div className="right menu">
                 {optionsDisplayed}
+
             </div>
         </div>
     );

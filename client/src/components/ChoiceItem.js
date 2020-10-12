@@ -9,6 +9,7 @@ function ChoiceItem(props) {
       history.push('/question')
     }else{
       
+      history.push('/question-list')
     }
 
   }
