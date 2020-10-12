@@ -3,6 +3,7 @@ const express = require('express')
 const firebase = require('firebase')
 const cors = require('cors')
 
+
 const app = express()
 
 const firebaseConfig = {
@@ -64,6 +65,7 @@ app.post('/server/send-problem', (req,res) => {
 
 app.post('/server/login', (req,res) => {
   let {email, password} = req.body
+
   auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       console.log('success')
@@ -75,6 +77,7 @@ app.post('/server/login', (req,res) => {
 
 app.post('/server/signup', (req,res) => {
   let {firstName, lastName, email, password, accountType} = req.body
+
   auth.createUserWithEmailAndPassword(email, password)
     .then(() => {
 
@@ -89,7 +92,6 @@ app.post('/server/signup', (req,res) => {
       }, (error) =>{
         console.log(error.message)
       })
-
     }, (error) => {
       console.log(error.message)
     })
@@ -97,6 +99,7 @@ app.post('/server/signup', (req,res) => {
 })
 
 app.delete('/server/logout', (req,res) => {
+
   auth.signOut().then(function() {
     console.log('success')
   }).catch(function(error) {
