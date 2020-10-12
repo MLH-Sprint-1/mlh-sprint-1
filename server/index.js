@@ -19,20 +19,31 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
-
 const db = firebase.firestore()
 const auth = firebase.auth()
 
+function isAuthed(req, res, next){
+  let user = auth.currentUser
+  if(user || req.path === '/server/signup' || req.path === '/server/login'){
+    next()
+  }else{
+    return res.redirect('http://localhost:3000/signin')
+  }
+}
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cors(), isAuthed)
 
 
 app.get('/server/get-questions', async (req, res) => {
+  let data = []
   const questions = await db.collection('Questions').where('status', '==', 'open').get()
   questions.forEach(doc => {
     console.log(doc.id, '=>', doc.data())
+    data.push(doc.data())
   })
+  res.json(data)
 })
 
 
@@ -53,24 +64,30 @@ app.post('/server/send-problem', (req,res) => {
       taught_by_id: `${professor}`
     }).then(() => {
       console.log('successfully saved topic')
+      res.json({status: 'success'})
     }, (error) => {
       console.log(error.message)
+      res.json({status: error.message})
     })
 
   }, (error) => {
     console.log(error.message)
+    res.json({status: error.message})
   })
 
 })
 
 app.post('/server/login', (req,res) => {
   let {email, password} = req.body
+  console.log(email)
 
   auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       console.log('success')
+      res.json({status: 'success'})
     }, (error) => {
       console.log(error.message)
+      res.json({status: error.message})
     })
 
 })
@@ -89,11 +106,14 @@ app.post('/server/signup', (req,res) => {
         account_type: `${accountType}`
       }).then(() =>{
         console.log('successfully saved data')
+        res.json({status: 'success'})
       }, (error) =>{
         console.log(error.message)
+        res.json({status: error.message})
       })
     }, (error) => {
       console.log(error.message)
+      res.json({status: error.message})
     })
 
 })
@@ -102,8 +122,10 @@ app.delete('/server/logout', (req,res) => {
 
   auth.signOut().then(function() {
     console.log('success')
+    res.json({status: 'success'})
   }).catch(function(error) {
     console.log(error.message)
+    res.json({status: error.message})
   })
 
 })

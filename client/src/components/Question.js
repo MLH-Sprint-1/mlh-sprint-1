@@ -1,23 +1,17 @@
 import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {TextField, Button} from '@material-ui/core'
 import QuestionInput from './QuestionInput'
 
 function Question(){
-  let [department, setDep] = useState('')
-  let [year, setYear] = useState('')
-  let [course, setCourse] = useState('')
+  let [professor, setProfessor] = useState('')
   let [topic, setTopic] = useState('')
   let [question, setQuestion] = useState('')
   let [length, setLength] = useState(200)
+  let history = useHistory()
 
-  function handleDep(e){
-    setDep(e.target.value)
-  }
-  function handleYear(e){
-    setYear(e.target.value)
-  }
-  function handleCourse(e){
-    setCourse(e.target.value)
+  function handleProfessor(e){
+    setProfessor(e.target.value)
   }
   function handleTopic(e){
     setTopic(e.target.value)
@@ -26,13 +20,26 @@ function Question(){
     setQuestion(e.target.value)
     setLength(200 - e.target.value.length)
   }
-  let questionDetails = ['Department', 'Year', 'Course Title', 'Topic']
-  let stateNames = [department, year, course, topic]
-  let stateHandlers = [handleDep, handleYear, handleCourse, handleTopic]
+  let questionDetails = ['Topic', 'Professor']
+  let stateNames = [topic, professor]
+  let stateHandlers = [handleTopic, handleProfessor]
 
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault()
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({professor, topic, request: question}),
+      headers: {"Content-Type": "application/json"}
+    }
 
+    const response = await fetch('/server/send-problem', options)
+    const resJson = await response.json()
+    if(resJson.status === 'success'){
+      alert('saved')
+      history.goBack()
+    }else{
+      alert(resJson.status)
+    }
 
   }
 

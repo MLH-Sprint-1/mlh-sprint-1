@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Login from './Login';
 import Signup from './Signup';
 
-const Signin = ({ loginFunc }) => {
+const Signin = () => {
 
     // signin options
     const signinArr = ['Login', 'Signup'];
@@ -13,8 +13,8 @@ const Signin = ({ loginFunc }) => {
     // loop through array and create divs
     const signinElems = signinArr.map(option => {
         return (
-            <div 
-                key={option} 
+            <div
+                key={option}
                 className={`item ${option===optionSelected ? 'active' : ''}`}
                 style={{'cursor': 'pointer'}}
                 onClick={() => setOptionSelected(option)}
@@ -29,9 +29,9 @@ const Signin = ({ loginFunc }) => {
                 {signinElems}
             </div>
             <div className="ui bottom attached active tab segment">
-                {optionSelected === 'Login' ? 
-                    <Login loginFunc={loginFunc} /> : 
-                    <Signup loginFunc={loginFunc} />
+                {optionSelected === 'Login' ?
+                    <Login /> :
+                    <Signup />
                 }
             </div>
         </div>
