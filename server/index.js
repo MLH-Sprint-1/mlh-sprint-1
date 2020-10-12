@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require('express')
 const firebase = require('firebase')
+const cors = require('cors')
+
 
 const app = express()
 
@@ -19,17 +21,52 @@ firebase.initializeApp(firebaseConfig);
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+
+const db = firebase.firestore()
+const auth = firebase.auth()
+
+
+
+app.get('/server/get-questions', async (req, res) => {
+  const questions = await db.collection('Questions').where('status', '==', 'open').get()
+  questions.forEach(doc => {
+    console.log(doc.id, '=>', doc.data())
+  })
+})
 
 
 app.post('/server/send-problem', (req,res) => {
-  let {topic, request} = req.body
+  let {topic, request, professor} = req.body
+  const user = auth.currentUser
+  db.collection('Questions').add({
+    request_by_id: `${user.uid}`,
+    topic: `${topic}`,
+    request: `${request}`,
+    request_date: `${new Date().toUTCString()}`,
+    status: 'open'
+  }).then(() => {
 
+    console.log('successfully saved question')
+    db.collection('Topic').doc(`${topic}`).set({
+      name: `${topic}`,
+      taught_by_id: `${professor}`
+    }).then(() => {
+      console.log('successfully saved topic')
+    }, (error) => {
+      console.log(error.message)
+    })
+
+  }, (error) => {
+    console.log(error.message)
+  })
 
 })
 
 app.post('/server/login', (req,res) => {
   let {email, password} = req.body
-  firebase.auth().signInWithEmailAndPassword(email, password)
+
+  auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       console.log('success')
     }, (error) => {
@@ -40,9 +77,21 @@ app.post('/server/login', (req,res) => {
 
 app.post('/server/signup', (req,res) => {
   let {firstName, lastName, email, password, accountType} = req.body
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+
+  auth.createUserWithEmailAndPassword(email, password)
     .then(() => {
-      console.log('success')
+
+      console.log('successful sign up')
+      db.collection("Users").add({
+        first_name: `${firstName}`,
+        last_name: `${lastName}`,
+        email_address: `${email}`,
+        account_type: `${accountType}`
+      }).then(() =>{
+        console.log('successfully saved data')
+      }, (error) =>{
+        console.log(error.message)
+      })
     }, (error) => {
       console.log(error.message)
     })
@@ -50,7 +99,8 @@ app.post('/server/signup', (req,res) => {
 })
 
 app.delete('/server/logout', (req,res) => {
-  firebase.auth().signOut().then(function() {
+
+  auth.signOut().then(function() {
     console.log('success')
   }).catch(function(error) {
     console.log(error.message)
