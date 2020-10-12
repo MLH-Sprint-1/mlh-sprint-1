@@ -23,19 +23,23 @@ const User = () => {
 
     // state for question filters
     const questionFilters = ["Responded", "Verified"];
-    const questionFiltersArr = questionFilters.map(filter => {
-        return {'filter': filter, 'checked': false};
-    });
-    console.log(questionFiltersArr);
-    //const [questionFiltersChecked, setQuestionFiltersChecked] = useState(Array(questionFilters.length).fill(''));
-    const [questionFiltersChecked, setQuestionFiltersChecked] = useState(Array(questionFilters.length).fill(true));
+    //const questionFiltersArr = questionFilters.map(filter => {
+    //    return {'filter': filter, 'checked': false};
+    //});
+    const [questionFiltersArr, setQuestionFiltersArr] = useState(
+        questionFilters.map(filter => {
+            return {'filter': filter, 'checked': false};
+        })
+    );
 
     // function to toggle checkbox
     const setQuestionFilterChecked = (filterOptionIndex) => {
-        // loop through existing array and update element at index
-        const newArr = [...questionFiltersChecked];
-        newArr[filterOptionIndex] = !newArr[filterOptionIndex];
-        //setQuestionFilterChecked(newArr);
+        // copy array
+        const newArr = [...questionFiltersArr];
+        // update checked value at that index
+        newArr[filterOptionIndex]['checked'] = !newArr[filterOptionIndex]['checked'];
+        // update state
+        setQuestionFiltersArr(newArr);
     };
 
     return (
@@ -45,7 +49,7 @@ const User = () => {
             Question Type: 
             <QuestionGroup groupList={questionGroups} groupSelected={questionGroupSelected} selectGroup={selectQuestionGroup} />
             Question Filters:
-            <QuestionFilter filterList={questionFilters} checkboxList={questionFiltersChecked} toggleCheckbox={setQuestionFilterChecked} />
+            <QuestionFilter filterList={questionFiltersArr} toggleCheckbox={setQuestionFilterChecked} />
         </div>
     );
 };

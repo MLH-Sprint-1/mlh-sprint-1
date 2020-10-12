@@ -1,18 +1,20 @@
 import React from 'react';
 
-const QuestionFilter = ({ filterList, checkboxList, toggleCheckbox }) => {
+const QuestionFilter = ({ filterList, toggleCheckbox }) => {
      // create dropdown options
      const checkboxOptions = filterList.map((option, index) => {
+         // destruct object
+         const { filter, checked } = option;
         return (
-            <div key={option} className="field">
+            <div key={filter} className="field">
                 <div className="ui checkbox">
                     <input 
                         type="checkbox" 
-                        checked={checkboxList[index]}
+                        checked={checked}
                         //onChange={() => toggleCheckbox(index)}
-                        onChange={() => console.log(index)}
+                        onChange={() => toggleCheckbox(index)}
                     />
-                    <label>{option}</label>
+                    <label>{filter}</label>
                 </div>
             </div>
         );
