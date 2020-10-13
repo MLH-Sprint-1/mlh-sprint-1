@@ -25,9 +25,9 @@ const App = () => {
         <div className="ui container">
             <Header />
               <Switch>
-                <Route path="/" exact
-                    render={() => <Home isLoggedIn={isLoggedIn} />}
-                />
+                  <Route path="/" exact>
+                    <Home isLoggedIn={isLoggedIn} />
+                  </Route>
 
                 <Route path="/signin" exact>
                   <Signin />

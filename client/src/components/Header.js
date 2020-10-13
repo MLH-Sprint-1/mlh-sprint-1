@@ -11,6 +11,7 @@ const Header = () => {
     const optionsSignIn = (
             <React.Fragment>
                 <Link to="/signin" className="item">
+                <i className="sign in alternate icon" />
                     Login/Signup
                 </Link>
             </React.Fragment>
@@ -58,6 +59,7 @@ const Header = () => {
     return (
         <div className="ui secondary pointing menu">
             <Link to='/' className="item">
+              <i className="home icon" />
                 Home
             </Link>
             <div className="right menu">
