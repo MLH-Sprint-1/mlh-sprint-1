@@ -148,6 +148,14 @@ app.post('/server/signup', (req,res) => {
 
 })
 
+app.get('/server/check-auth', (req,res) => {
+  if(auth.currentUser){
+    res.json({status: 'verified'})
+  }else{
+    res.json({status: 'unverified'})
+  }
+})
+
 app.delete('/server/logout', (req,res) => {
 
   auth.signOut().then(function() {
