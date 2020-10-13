@@ -1,17 +1,16 @@
 import React from 'react'
 
-function QuestionListItem(props){
-  let text = props.text.length > 100? props.text.substr(0,100) + '...' : props.text
+function QuestionListItem({ question }){
+
+  const { topic, request, request_date, status } = question;
+  let text = request.length > 100? request.substr(0,100) + '...' : request
 
   return(
-    <div className='col mb-4'>
-      <div className='card'>
-        <div className='card-body'>
-          <h5 className='card-title'>{props.title}</h5>
-          <p className='card-text'>{text}</p>
-        </div>
-      </div>
-
+    <div className="content">
+      <div className="header">{topic}</div>
+      <div className="meta">{request_date}</div>
+      <div className="description">{text}</div>
+      <div className="meta">{status}</div>
     </div>
 
   )

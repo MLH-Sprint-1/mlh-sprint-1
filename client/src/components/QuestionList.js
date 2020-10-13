@@ -24,21 +24,21 @@ function QuestionList(){
   }
 
   const questionCards = questions.map((question, index) => {
-    const { request, request_date, topic } = question;
     return (
       <div key={index} className="card">
-        <div className="content">
-          <div className="header">{topic}</div>
-          <div className="description">{request}</div>
-          <div className="extra content">{request_date}</div>
-        </div>
+        <QuestionListItem question={question} />
       </div>
     )
   });
 
   return (
-    <div className="ui cards">
-      {questionCards}
+    <div>
+      <div>
+        FILTERS
+      </div>
+      <div className="ui cards">
+        {questionCards}
+      </div>
     </div>
   )
 
