@@ -24,10 +24,35 @@ function QuestionList(){
     )
   }
 
+  const textLength = 100;
+
+
   const questionCards = questions.map((question, index) => {
-    return (
-        <QuestionListItem key={index} question={question} />
-      )
+
+    const { topic, request, request_date, status } = question;
+    const requestNew = request.length > textLength ? request.substr(0,textLength) + '...' : request
+    
+    return(
+      <div className="card">
+        <div className="content">
+          <div className="header">{topic}</div>
+          <div className="meta">
+            <span className="right floated category">{status}</span>
+            <span className="time">{request_date}</span>
+          </div>
+          <div className="description">{requestNew}</div>
+          {/*<div className="meta">{status}</div>*/}
+        </div>
+        <div className="extra content">
+          <div className="right floated">
+            See More (LINK)
+          </div>
+          <div>Submitted by USER</div>
+        </div>
+      </div>
+
+    )
+      
   });
 
   return (
