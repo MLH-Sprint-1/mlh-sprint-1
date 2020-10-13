@@ -24,7 +24,7 @@ const auth = firebase.auth()
 
 function isAuthed(req, res, next){
   let user = auth.currentUser
-  if(user || req.path === '/server/signup' || req.path === '/server/login'){
+  if(user || req.path === '/server/signup' || req.path === '/server/login' || req.path === '/server/check-auth'){
     next()
   }else{
     return res.redirect('http://localhost:3000/signin')
@@ -109,7 +109,6 @@ app.post('/server/send-problem', (req,res) => {
 
 app.post('/server/login', (req,res) => {
   let {email, password} = req.body
-  console.log(email)
 
   auth.signInWithEmailAndPassword(email, password)
     .then(() => {

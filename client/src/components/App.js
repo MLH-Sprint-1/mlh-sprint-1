@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css'
 
 import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
-import Home from './Content/Home';
+import Welcome from './Content/Welcome';
 import Signin from './SignIn/Signin';
 import Choice from './Choice'
 import Question from './Question'
@@ -12,25 +12,34 @@ import QuestionList from './QuestionList'
 
 const App = () => {
 
+
     // state for if user is logged in (initially set to false)
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [auth, setAuth] = useState(false);
+
+    async function checkState(){
+      const response = await fetch('/server/check-auth')
+      const resJson = await response.json()
+      if(resJson.status === 'verified'){
+        setAuth(true)
+      }
+    }
+
+    useEffect(() => {
+      checkState()
+    })
 
 
-    // log out
-    const logOut = () => {
-        setIsLoggedIn(false);
-    };
 
     return (
         <div className="ui container">
-            <Header />
+            <Header auth={auth} setAuth={setAuth} />
               <Switch>
                 <Route path="/" exact
-                    render={() => <Home isLoggedIn={isLoggedIn} />}
+                    render={() => <Welcome />}
                 />
 
                 <Route path="/signin" exact>
-                  <Signin />
+                  <Signin setAuth={setAuth} />
                 </Route>
                 <Route exact path ='/choices'>
                   <Choice />

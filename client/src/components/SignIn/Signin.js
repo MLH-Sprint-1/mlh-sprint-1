@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Login from './Login';
 import Signup from './Signup';
 
-const Signin = () => {
+const Signin = ({setAuth}) => {
 
     // signin options
     const signinArr = ['Login', 'Signup'];
@@ -30,8 +30,8 @@ const Signin = () => {
             </div>
             <div className="ui bottom attached active tab segment">
                 {optionSelected === 'Login' ?
-                    <Login /> :
-                    <Signup />
+                    <Login setAuth={setAuth} /> :
+                    <Signup setAuth={setAuth} />
                 }
             </div>
         </div>

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link, useHistory, useLocation} from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 
-const Header = () => {
-
+const Header = ({auth, setAuth}) => {
   let history = useHistory()
-  let location = useLocation()
+
 
     // if user is logged in, should display 'Logout'
     // else, should show 'Login' and 'Signup'
@@ -23,6 +22,7 @@ const Header = () => {
       const response = await fetch('/server/logout', options)
       const resJson = await response.json()
       if(resJson.status === 'success'){
+        setAuth(false)
         history.push('/')
       }else{
         alert(resJson.status)
@@ -47,13 +47,7 @@ const Header = () => {
         </div>
     );
 
-
-    let optionsDisplayed
-    if(location.pathname === '/' || location.pathname === '/signin'){
-      optionsDisplayed = optionsSignIn
-    }else{
-      optionsDisplayed = optionsSignOut
-    }
+    let optionsDisplayed = !auth? optionsSignIn: optionsSignOut
 
     return (
         <div className="ui secondary pointing menu">
