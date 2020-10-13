@@ -36,11 +36,41 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors(), isAuthed)
 
 
+app.get('/server/user-profile',async (req,res) => {
+  let user = auth.currentUser
+  let userDetails = []
+  let questionsAsked = []
+  let questionsSolved = []
+
+  try{
+    const details = await db.collection('Users').where('email_address', '==', `${user.email}`).get()
+    const asked = await db.collection('Questions').where('request_by_id', '==', `${user.uid}`).get()
+    const solved = await db.collection('Questions').where('response_by_id', '==', `${user.uid}`).get()
+
+    details.forEach(doc => {
+      userDetails.push(doc.data())
+    })
+    asked.forEach(doc => {
+      questionsAsked.push(doc.data())
+    })
+    solved.forEach(doc => {
+      questionsSolved.push(doc.data())
+    })
+
+    return res.json({status: 'success', userDetails, questionsAsked, questionsSolved})
+
+
+  }catch(error){
+    console.log(error)
+  }
+
+  return res.json({status: 'failure'})
+})
+
 app.get('/server/get-questions', async (req, res) => {
   let data = []
   const questions = await db.collection('Questions').where('status', '==', 'open').get()
   questions.forEach(doc => {
-    console.log(doc.id, '=>', doc.data())
     data.push(doc.data())
   })
   res.json(data)
