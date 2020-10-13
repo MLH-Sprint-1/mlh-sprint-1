@@ -35,8 +35,14 @@ const Header = () => {
             Welcome, Aneesh!
             <i className="dropdown icon" />
             <div className="menu">
-                <div className="item">Settings</div>
-                <div className="item" onClick={handleLogout}>Logout</div>
+                <div className="item">
+                  <i className="cog icon" />
+                  Settings
+                </div>
+                <div className="item" onClick={handleLogout}>
+                  <i className="sign out alternate icon" />
+                  Logout
+                </div>
             </div>
         </div>
     );
