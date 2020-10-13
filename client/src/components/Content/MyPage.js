@@ -7,6 +7,9 @@ import Choice from '../Choice';
 
 const MyPage = () => {
 
+    const user = {'first_name': 'Aneesh', 'id': 'A6jttMa1IFSeadKvGvx7adCynTG3'};
+    const { first_name, id } = user;
+
     // state for courses
     const courses = ['All Courses', 'Math', 'Programming'];
     const [courseSelected, setCourseSelected] = useState(courses[0]);
@@ -46,7 +49,7 @@ const MyPage = () => {
 
     return (
         <div>
-            <h1 className="ui header">Welcome, Aneesh!</h1>
+            <h1 className="ui header">Welcome, {first_name}!</h1>
             <div className="ui equal width grid">
                 <Course courseList={courses} courseSelected={courseSelected} selectCourse={selectCourse} />
                 <div className="column">

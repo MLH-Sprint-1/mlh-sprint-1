@@ -37,7 +37,7 @@ function QuestionList(){
     const requestNew = request.length > textLength ? request.substr(0,textLength) + '...' : request
     
     return(
-      <div className="card">
+      <div key={index} className="card">
         <div className="content">
           <div className="header">{topic}</div>
           <div className="meta">

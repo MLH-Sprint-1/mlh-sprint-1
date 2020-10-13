@@ -48,7 +48,7 @@ const Header = () => {
         //</div>
           <React.Fragment>
             <div className="item">
-              Welcome, Aneesh!
+              Welcome!
             </div>
             <div className="item" onClick={handleLogout} style={{'cursor': 'pointer'}}>
                 <i className="sign out alternate icon" />
