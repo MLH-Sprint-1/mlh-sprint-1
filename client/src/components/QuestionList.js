@@ -37,12 +37,12 @@ function QuestionList(){
     const requestNew = request.length > textLength ? request.substr(0,textLength) + '...' : request
     
     return(
-      <div className={`card ${statusColorObj[status]}`}>
+      <div className="card">
         <div className="content">
           <div className="header">{topic}</div>
           <div className="meta">
-            <span className="right floated category">{status}</span>
-            <span className="time">{request_date}</span>
+            {/*<span className="right floated category">{status}</span>*/}
+            {/*<span className="time">{request_date}</span>*/}
           </div>
           <div className="description">{requestNew}</div>
           {/*<div className="meta">{status}</div>*/}
@@ -66,7 +66,7 @@ function QuestionList(){
           <button className="ui button">Ask a Question</button>
         </Link>
       </div>
-      <div className="ui four cards">
+      <div className="ui cards">
         {questionCards}
       </div>
     </div>

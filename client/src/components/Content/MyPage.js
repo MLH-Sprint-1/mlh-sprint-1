@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Course from './Course';
 import QuestionGroup from './QuestionGroup';
 import QuestionFilter from './QuestionFilter';
+import QuestionList from '../QuestionList';
+import Choice from '../Choice';
 
-const User = () => {
+const MyPage = () => {
 
     // state for courses
     const courses = ['All Courses', 'Math', 'Programming'];
@@ -45,13 +47,23 @@ const User = () => {
     return (
         <div>
             <h1 className="ui header">Welcome, Aneesh!</h1>
-            <Course courseList={courses} courseSelected={courseSelected} selectCourse={selectCourse} />
-            Question Type: 
-            <QuestionGroup groupList={questionGroups} groupSelected={questionGroupSelected} selectGroup={selectQuestionGroup} />
-            Question Filters:
-            <QuestionFilter filterList={questionFiltersArr} toggleCheckbox={setQuestionFilterChecked} />
+            <div className="ui equal width grid">
+                <Course courseList={courses} courseSelected={courseSelected} selectCourse={selectCourse} />
+                <div className="column">
+                    Question Type: 
+                    <QuestionGroup groupList={questionGroups} groupSelected={questionGroupSelected} selectGroup={selectQuestionGroup} />
+                    <QuestionList />
+                </div>
+                <div className="column">
+                    Question Filters:
+                    <QuestionFilter filterList={questionFiltersArr} toggleCheckbox={setQuestionFilterChecked} />
+                </div>
+                <div className="column">
+                    <Choice />
+                </div>
+            </div>
         </div>
     );
 };
 
-export default User;
+export default MyPage;

@@ -8,6 +8,7 @@ import Signin from './SignIn/Signin';
 import Choice from './Choice'
 import Question from './Question'
 import QuestionList from './QuestionList'
+import MyPage from './Content/MyPage';
 
 
 const App = () => {
@@ -40,6 +41,9 @@ const App = () => {
                 </Route>
                 <Route exact path='/question-list'>
                   <QuestionList />
+                </Route>
+                <Route exact path='/mypage'>
+                  <MyPage />
                 </Route>
 
             </Switch>

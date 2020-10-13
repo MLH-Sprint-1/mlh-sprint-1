@@ -31,21 +31,31 @@ const Header = () => {
     }
 
     const optionsSignOut = (
-        <div className="ui simple dropdown item">
-            <i className="user icon" />
-            Welcome, Aneesh!
-            <i className="dropdown icon" />
-            <div className="menu">
-                <div className="item">
-                  <i className="cog icon" />
-                  Settings
-                </div>
-                <div className="item" onClick={handleLogout}>
-                  <i className="sign out alternate icon" />
-                  Logout
-                </div>
+        //<div className="ui simple dropdown item">
+        //    <i className="user icon" />
+        //    Welcome, Aneesh!
+        //    <i className="dropdown icon" />
+        //    <div className="menu">
+        //        <div className="item">
+        //          <i className="cog icon" />
+        //          Settings
+        //        </div>
+        //        <div className="item" onClick={handleLogout}>
+        //          <i className="sign out alternate icon" />
+        //          Logout
+        //        </div>
+        //    </div>
+        //</div>
+          <React.Fragment>
+            <div className="item">
+              Welcome, Aneesh!
             </div>
-        </div>
+            <div className="item" onClick={handleLogout} style={{'cursor': 'pointer'}}>
+                <i className="sign out alternate icon" />
+                Logout
+            </div>
+          </React.Fragment>
+         
     );
 
 
