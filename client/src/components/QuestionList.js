@@ -26,6 +26,10 @@ function QuestionList(){
 
   const textLength = 100;
 
+  const statusColorObj = {
+    'open': 'orange',
+    'completed': 'green'
+  };
 
   const questionCards = questions.map((question, index) => {
 
@@ -33,7 +37,7 @@ function QuestionList(){
     const requestNew = request.length > textLength ? request.substr(0,textLength) + '...' : request
     
     return(
-      <div className="card">
+      <div className={`card ${statusColorObj[status]}`}>
         <div className="content">
           <div className="header">{topic}</div>
           <div className="meta">
@@ -62,7 +66,7 @@ function QuestionList(){
           <button className="ui button">Ask a Question</button>
         </Link>
       </div>
-      <div className="ui cards">
+      <div className="ui four cards">
         {questionCards}
       </div>
     </div>
