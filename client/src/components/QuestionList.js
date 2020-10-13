@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 import QuestionListItem from './QuestionListItem'
 
 
@@ -25,16 +26,16 @@ function QuestionList(){
 
   const questionCards = questions.map((question, index) => {
     return (
-      <div key={index} className="card">
-        <QuestionListItem question={question} />
-      </div>
-    )
+        <QuestionListItem key={index} question={question} />
+      )
   });
 
   return (
     <div>
       <div>
-        FILTERS
+        <Link to="/question">
+          <button className="ui button">Ask a Question</button>
+        </Link>
       </div>
       <div className="ui cards">
         {questionCards}
