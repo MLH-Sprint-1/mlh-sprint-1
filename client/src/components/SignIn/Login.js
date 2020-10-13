@@ -30,7 +30,8 @@ const Login = () => {
     const response = await fetch('/server/login',options)
     const resJson = await response.json()
     if(resJson.status === 'success'){
-      history.push('/choices')
+      //history.push('/choices')
+      history.push('/mypage')
     }else{
       alert(resJson.status)
     }

@@ -11,6 +11,7 @@ const Header = () => {
     const optionsSignIn = (
             <React.Fragment>
                 <Link to="/signin" className="item">
+                <i className="sign in alternate icon" />
                     Login/Signup
                 </Link>
             </React.Fragment>
@@ -30,21 +31,31 @@ const Header = () => {
     }
 
     const optionsSignOut = (
-        <div className="ui simple dropdown item">
-            <i className="user icon" />
-            Welcome, Aneesh!
-            <i className="dropdown icon" />
-            <div className="menu">
-                <div className="item">
-                  <i className="cog icon" />
-                  Settings
-                </div>
-                <div className="item" onClick={handleLogout}>
-                  <i className="sign out alternate icon" />
-                  Logout
-                </div>
+        //<div className="ui simple dropdown item">
+        //    <i className="user icon" />
+        //    Welcome, Aneesh!
+        //    <i className="dropdown icon" />
+        //    <div className="menu">
+        //        <div className="item">
+        //          <i className="cog icon" />
+        //          Settings
+        //        </div>
+        //        <div className="item" onClick={handleLogout}>
+        //          <i className="sign out alternate icon" />
+        //          Logout
+        //        </div>
+        //    </div>
+        //</div>
+          <React.Fragment>
+            <div className="item">
+              Welcome!
             </div>
-        </div>
+            <div className="item" onClick={handleLogout} style={{'cursor': 'pointer'}}>
+                <i className="sign out alternate icon" />
+                Logout
+            </div>
+          </React.Fragment>
+         
     );
 
 
@@ -58,6 +69,7 @@ const Header = () => {
     return (
         <div className="ui secondary pointing menu">
             <Link to='/' className="item">
+              <i className="home icon" />
                 Home
             </Link>
             <div className="right menu">
