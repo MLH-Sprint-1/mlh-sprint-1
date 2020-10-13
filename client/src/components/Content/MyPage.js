@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Course from './Course';
 import QuestionGroup from './QuestionGroup';
 import QuestionFilter from './QuestionFilter';
@@ -9,6 +9,32 @@ const MyPage = () => {
 
     const user = {'first_name': 'Aneesh', 'id': 'A6jttMa1IFSeadKvGvx7adCynTG3'};
     const { first_name, id } = user;
+
+    // topics
+    const [topicList, setTopicList] = useState([]);
+    const [topicSelected, setTopicSelected] = useState(null);
+    const selectTopic = (topic) => {
+        if (topic === topicSelected) {
+            setTopicSelected(null)
+        } else {
+            setTopicSelected(topic);
+        }
+    }
+    const getTopics = async () => {
+        const response = await fetch('/server/get-topics');
+        const resJson = await response.json();
+        const topics = resJson.map(topicRecord => {
+            const { name } = topicRecord;
+            return name;
+        });
+        setTopicList([...topics])
+    };
+    useEffect(() => {
+        getTopics()
+    }, [])
+  
+
+
 
     // state for courses
     const courses = ['All Courses', 'Math', 'Programming'];
@@ -51,7 +77,7 @@ const MyPage = () => {
         <div>
             <h1 className="ui header">Welcome, {first_name}!</h1>
             <div className="ui equal width grid">
-                <Course courseList={courses} courseSelected={courseSelected} selectCourse={selectCourse} />
+                <Course courseList={topicList} courseSelected={topicSelected} selectCourse={selectTopic} />
                 <div className="column">
                     Question Type: 
                     <QuestionGroup groupList={questionGroups} groupSelected={questionGroupSelected} selectGroup={selectQuestionGroup} />
