@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = ({setAuth}) => {
   let history = useHistory()
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
@@ -28,6 +28,7 @@ async function signupFunc(e){
     const resJson = await response.json()
 
     if(resJson.status === 'success'){
+      setAuth(true)
       history.push('/choices')
     }else{
       alert(resJson.status)
