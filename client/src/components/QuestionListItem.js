@@ -14,7 +14,7 @@ function QuestionListItem({ question }){
   }
 
   return(
-    <div className="card" onClick={showDetails}>
+    <div style={{'cursor': 'pointer'}} className="card" onClick={showDetails}>
       <div className="content">
         <div className="header">{topic}</div>
         <div className="description">{text}</div>

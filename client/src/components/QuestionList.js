@@ -32,12 +32,9 @@ function QuestionList(){
 
   return (
     <div>
-      <div>
-        <Link to="/question">
-          <button className="ui button">Ask a Question</button>
-        </Link>
-      </div>
-      <div className="ui cards">
+      <Link to="/choices">Go back</Link>
+      <h3 className="ui header">Click on a question to see more details and reach out</h3>
+      <div className="ui four cards">
         {questionCards}
       </div>
     </div>

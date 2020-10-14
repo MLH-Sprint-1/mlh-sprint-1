@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useLocation} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 function QuestionDetails(){
   let location = useLocation()
@@ -24,12 +24,15 @@ function QuestionDetails(){
 
 
   return(
-  <div className="jumbotron">
-    <h4 className="display-4">{question.topic}</h4>
-    <p>Asked by {`${details[0]} ${details[1]}`}</p>
-    <p>{question.request_date}</p>
-    <p className="lead">{question.request}</p>
-    <a className='btn question-btn' href={`mailto:${details[2]}`} role="button">Contact {details[0]}</a>
+  <div>
+    <Link to="/question-list">Go back</Link>
+    <div className="jumbotron">
+      <h4 className="display-4">{question.topic}</h4>
+      <p>Asked by {`${details[0]} ${details[1]}`}</p>
+      <p>{question.request_date}</p>
+      <p className="lead">{question.request}</p>
+      <a className='btn question-btn' href={`mailto:${details[2]}`} role="button">Contact {details[0]}</a>
+  </div>
   </div>
   )
 }
