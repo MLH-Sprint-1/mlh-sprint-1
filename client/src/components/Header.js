@@ -54,6 +54,11 @@ const Header = ({auth, setAuth}) => {
             <Link to='/' className="item">
                 Home
             </Link>
+
+            {auth &&
+            <Link to='/choices' className="item">
+                Choices
+            </Link>}
             <div className="right menu">
                 {optionsDisplayed}
 

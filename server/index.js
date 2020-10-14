@@ -44,8 +44,12 @@ app.get('/server/user-profile',async (req,res) => {
 
   try{
     const details = await db.collection('Users').where('email_address', '==', `${user.email}`).get()
-    const asked = await db.collection('Questions').where('request_by_id', '==', `${user.uid}`).get()
-    const solved = await db.collection('Questions').where('response_by_id', '==', `${user.uid}`).get()
+    let id
+    details.forEach(doc => {
+      id = doc.id
+    })
+    const asked = await db.collection('Questions').where('request_by_id', '==', `${id}`).get()
+    const solved = await db.collection('Questions').where('response_by_id', '==', `${id}`).get()
 
     details.forEach(doc => {
       userDetails.push(doc.data())
@@ -76,34 +80,47 @@ app.get('/server/get-questions', async (req, res) => {
   res.json(data)
 })
 
+app.post('/server/get-names', async (req,res) =>{
+  const {id} = req.body
+  console.log(id)
+  const details = await db.collection('Users').doc(`${id}`).get()
+  let data = details.data()
+  console.log(data)
 
-app.post('/server/send-problem', (req,res) => {
+  res.json({first: data.first_name, last: data.last_name, email: data.email_address})
+})
+
+app.post('/server/send-problem',async (req,res) => {
   let {topic, request, professor} = req.body
   const user = auth.currentUser
-  db.collection('Questions').add({
-    request_by_id: `${user.uid}`,
-    topic: `${topic}`,
-    request: `${request}`,
-    request_date: `${new Date().toUTCString()}`,
-    status: 'open'
-  }).then(() => {
 
-    console.log('successfully saved question')
-    db.collection('Topic').doc(`${topic}`).set({
-      name: `${topic}`,
-      taught_by_id: `${professor}`
-    }).then(() => {
-      console.log('successfully saved topic')
-      res.json({status: 'success'})
-    }, (error) => {
-      console.log(error.message)
-      res.json({status: error.message})
+  try{
+    const userDetails = await db.collection('Users').where('email_address', '==', `${user.email}`).get()
+    let id
+    userDetails.forEach(doc => {
+      id = doc.id
     })
 
-  }, (error) => {
+    const questionDoc = await db.collection('Questions').add({
+      request_by_id: `${id}`,
+      topic: `${topic}`,
+      request: `${request}`,
+      request_date: `${new Date().toUTCString()}`,
+      status: 'open'
+    })
+    console.log('successfully saved question')
+
+    const topicDoc = await db.collection('Topic').doc(`${topic}`).set({
+      name: `${topic.toLowerCase()}`,
+      taught_by_id: `${professor}`
+    })
+    console.log('successfully saved topic')
+    res.json({status: 'success'})
+
+  }catch(error){
     console.log(error.message)
     res.json({status: error.message})
-  })
+  }
 
 })
 
