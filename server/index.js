@@ -82,10 +82,8 @@ app.get('/server/get-questions', async (req, res) => {
 
 app.post('/server/get-names', async (req,res) =>{
   const {id} = req.body
-  console.log(id)
   const details = await db.collection('Users').doc(`${id}`).get()
   let data = details.data()
-  console.log(data)
 
   res.json({first: data.first_name, last: data.last_name, email: data.email_address})
 })
