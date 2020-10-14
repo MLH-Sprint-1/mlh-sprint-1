@@ -55,7 +55,7 @@ const Welcome = () => {
                     and
                 </div>
             </div>
-            <div>**in development</div>
+            <div className="ui center aligned container">**in development</div>
 
         </div>
     );
