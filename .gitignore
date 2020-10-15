@@ -351,3 +351,9 @@ MigrationBackup/
 
 #Ignore .env file
 server/.env
+
+#Ignore .google-cookie
+machine-learning/.google-cookie
+
+#pycache
+__pycache__
