@@ -7,17 +7,17 @@ const Welcome = () => {
         {
            'type': 'Students',
            'benefits': [
-            'Ask questions and see questions from fellow peers',
-            ' Answer questions to receive credit towards your grade'
+            'Ask questions about topics and receive help from your fellow classmates',
+            'Reach out to fellow classmates to answer any questions they have',
+            '**Earn credit for helping your peers and be recognized by your professor'
             ]
         },
         {
-            'type': 'Professors',
+            'type': '**Professors',
             'benefits': [
-                'With students helping other students, your demand for office hours will lessen so you can focus on your other courses or projects',
-                'See student solutions to problems so you can refine subsequent lectures',
-                'Increase demand for your course with student incentive',
-                'See data about your lectures such as who is asking questions about which points in the lecture',
+                'With students helping other students, your need to be available lessens so you can focus on other courses or projects',
+                'See student solutions to problems so you can refine subsequent lectures or future courses',
+                'Increase demand for your course with the credit incentive',
                 'Identify potential teaching assistants among your students'
             ]
         }
@@ -44,7 +44,8 @@ const Welcome = () => {
     });
 
     return (
-        <div>
+        <div className="ui container">
+            <img className="ui centered image" src="/logo.png" alt="logo" />
             <h2 className="ui center aligned header">How We Help:</h2>
             <div className="ui segment">
                 <div className="ui two column very relaxed grid">
@@ -54,6 +55,8 @@ const Welcome = () => {
                     and
                 </div>
             </div>
+            <div className="ui center aligned container">**in development</div>
+
         </div>
     );
 };

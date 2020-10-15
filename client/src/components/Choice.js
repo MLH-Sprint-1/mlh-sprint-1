@@ -1,15 +1,39 @@
-import React from 'react'
-import ChoiceItem from './ChoiceItem'
+import React from 'react';
+import ChoiceItem from './ChoiceItem';
 
-function Choice(){
-  let choices = ['Want to ask questions', 'Interested in solving questions']
-  let state = ['ask', 'answer']
+const Choice = () => {
+  
+  const choicesArr = [
+    {'text': 'Have a Question?', 'state': 'ask'},
+    {'text': 'Have an Answer?', 'state': 'answer'}
+  ];
+
+  const choiceItems = choicesArr.map(choiceObj => {
+    const { text, state } = choiceObj;
+    return (
+      <div className="ui container" key={text} style={{'cursor': 'pointer'}}>
+        <ChoiceItem text={text} state={state} />
+    </div>
+    )
+  });
 
   return (
     <div>
-      {choices.map((item, index) => <ChoiceItem key={item} text ={item} state ={state[index]}/>)}
+      {choiceItems}
     </div>
   )
+
 }
 
-export default Choice
+//function Choice(){
+//  let choices = ['Want to ask questions', 'Interested in solving questions']
+//  let state = ['ask', 'answer']
+
+//  return (
+//    <div>
+//      {choices.map((item, index) => <ChoiceItem key={item} text ={item} state ={state[index]}/>)}
+//    </div>
+//  )
+//}
+
+export default Choice;

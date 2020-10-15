@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({setAuth}) => {
   let history = useHistory()
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
@@ -21,7 +21,6 @@ const Login = () => {
       alert('input details')
       return
     }
-    console.log(email)
     const options = {
       method: 'POST',
       body: JSON.stringify({email, password}),
@@ -30,6 +29,7 @@ const Login = () => {
     const response = await fetch('/server/login',options)
     const resJson = await response.json()
     if(resJson.status === 'success'){
+      setAuth(true)
       history.push('/choices')
     }else{
       alert(resJson.status)

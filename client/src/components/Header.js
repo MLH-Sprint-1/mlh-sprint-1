@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link, useHistory, useLocation} from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 
-const Header = () => {
-
+const Header = ({auth, setAuth}) => {
   let history = useHistory()
-  let location = useLocation()
+
 
     // if user is logged in, should display 'Logout'
     // else, should show 'Login' and 'Signup'
@@ -23,6 +22,7 @@ const Header = () => {
       const response = await fetch('/server/logout', options)
       const resJson = await response.json()
       if(resJson.status === 'success'){
+        setAuth(false)
         history.push('/')
       }else{
         alert(resJson.status)
@@ -30,30 +30,44 @@ const Header = () => {
     }
 
     const optionsSignOut = (
-        <div className="ui simple dropdown item">
-            <i className="user icon" />
-            Welcome, Aneesh!
-            <i className="dropdown icon" />
-            <div className="menu">
-                <div className="item">Settings</div>
-                <div className="item" onClick={handleLogout}>Logout</div>
+        //<div className="ui simple dropdown item">
+        //    <i className="user icon" />
+        //    Welcome!
+        //    <i className="dropdown icon" />
+        //    <div className="menu">
+        //        <div className="item">
+        //          <i className="cog icon" />
+        //          Settings
+        //        </div>
+        //        <div className="item" onClick={handleLogout}>
+        //          <i className="sign out alternate icon" />
+        //          Logout
+        //        </div>
+        //    </div>
+        //</div>
+        <React.Fragment>
+            <div className="item">
+              Welcome!
             </div>
-        </div>
+            <div className="item" onClick={handleLogout} style={{'cursor': 'pointer'}}>
+                <i className="sign out alternate icon" />
+                Logout
+            </div>
+          </React.Fragment>
     );
 
-
-    let optionsDisplayed
-    if(location.pathname === '/' || location.pathname === '/signin'){
-      optionsDisplayed = optionsSignIn
-    }else{
-      optionsDisplayed = optionsSignOut
-    }
+    let optionsDisplayed = !auth? optionsSignIn: optionsSignOut
 
     return (
-        <div className="ui secondary pointing menu">
+        <div className="ui secondary pointing menu" style={{'background': '#dcdfe3'}}>
             <Link to='/' className="item">
                 Home
             </Link>
+
+            {auth &&
+            <Link to='/choices' className="item">
+                Choices
+            </Link>}
             <div className="right menu">
                 {optionsDisplayed}
 

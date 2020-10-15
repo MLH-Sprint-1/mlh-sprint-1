@@ -1,17 +1,37 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 
-function QuestionListItem(props){
-  let text = props.text.length > 100? props.text.substr(0,100) + '...' : props.text
+function QuestionListItem({ question }){
+  let history = useHistory()
+  const { topic, request } = question;
+  let text = request.length > 100? request.substr(0,100) + '...' : request
+
+  function showDetails(){
+    history.push({
+      pathname: `/question-details/${topic}`,
+      state: {question}
+    })
+  }
+
+  const topicObj = {
+    'Math': {'color': 'blue', 'icon': 'calculator icon'},
+    'Science': {'color': 'yellow', 'icon': 'flask icon'},
+    'Programming': {'color': 'green', 'icon': 'code icon'},
+    'Machine Learning': {'color': 'red', 'icon': 'superscript icon'}
+  }
 
   return(
-    <div className='col mb-4'>
-      <div className='card'>
-        <div className='card-body'>
-          <h5 className='card-title'>{props.title}</h5>
-          <p className='card-text'>{text}</p>
+    <div style={{'cursor': 'pointer'}} className={`${topicObj[topic]['color']} card`} onClick={showDetails}>
+      <div className="content">
+        <div className="header">
+          {topic}
+          <div className="right floated">
+            <i className={topicObj[topic]['icon']} />
+          </div>
         </div>
+        <div className="description">{text}</div>
+        {/*<div className="meta">{status}</div>*/}
       </div>
-
     </div>
 
   )
