@@ -37,9 +37,10 @@ class document_extract:
             import wikipedia
 
             print('Relevant keywords regarding your question are: ', wikipedia.search(self.question,results=4))
-            # print('In less than 10 sentence, Collable thinks the answer is: ', wikipedia.summary((self.question), sentences=10))
+            print('In less than 10 sentence, Collable thinks the answer is: ', wikipedia.summary((self.question), sentences=10))
             page = wikipedia.page(self.question)
-            return page.content
+
+            return f"For complete information"(page.content
 
 
         except ImportError:
