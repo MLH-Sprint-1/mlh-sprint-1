@@ -1,6 +1,5 @@
 # Collable 
 
-<center> <img logo.png/> </center>
 
 
 Collable is an initiative to improve education systems and support not just Students but also Professors. 
