@@ -59,7 +59,7 @@ const Header = ({auth, setAuth}) => {
     let optionsDisplayed = !auth? optionsSignIn: optionsSignOut
 
     return (
-        <div className="ui secondary pointing menu">
+        <div className="ui secondary pointing menu" style={{'background': '#dcdfe3'}}>
             <Link to='/' className="item">
                 Home
             </Link>
