@@ -44,7 +44,7 @@ function Question(){
   }
 
   return (
-    <div>
+    <div className="ui container">
       <form onSubmit ={handleSubmit}>
         {questionDetails.map((item, index) =>
           <QuestionInput key={item} attr ={item} input ={stateNames[index]} inputHandler ={stateHandlers[index]}/>

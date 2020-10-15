@@ -11,7 +11,7 @@ const Choice = () => {
   const choiceItems = choicesArr.map(choiceObj => {
     const { text, state } = choiceObj;
     return (
-      <div key={text} style={{'cursor': 'pointer'}}>
+      <div className="ui container" key={text} style={{'cursor': 'pointer'}}>
         <ChoiceItem text={text} state={state} />
     </div>
     )

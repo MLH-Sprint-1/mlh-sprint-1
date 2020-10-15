@@ -24,7 +24,7 @@ const Signin = ({setAuth}) => {
         )
     })
     return (
-        <div>
+        <div className="ui container">
             <div className="ui top attached tabular menu">
                 {signinElems}
             </div>

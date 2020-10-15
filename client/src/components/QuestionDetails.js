@@ -24,7 +24,7 @@ function QuestionDetails(){
 
 
   return(
-  <div>
+  <div className="ui container">
     <Link to="/question-list">Go back</Link>
     <div className="jumbotron">
       <h4 className="display-4">{question.topic}</h4>

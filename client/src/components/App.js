@@ -32,7 +32,7 @@ const App = () => {
 
 
     return (
-        <div className="ui container">
+        <div>
             <Header auth={auth} setAuth={setAuth} />
               <Switch>
                 <Route path="/" exact

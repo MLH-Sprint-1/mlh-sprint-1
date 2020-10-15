@@ -44,7 +44,7 @@ const Welcome = () => {
     });
 
     return (
-        <div>
+        <div className="ui container">
             <img className="ui centered image" src="/logo.png" alt="logo" />
             <h2 className="ui center aligned header">How We Help:</h2>
             <div className="ui segment">
