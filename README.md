@@ -3,6 +3,9 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/MLH-Sprint-1/mlh-sprint-1/commits/master)
 [![MIT Licenced](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/MLH-Sprint-1/mlh-sprint-1/blob/master/LICENSE)
 
+
+<img src="https://github.com/MLH-Sprint-1/mlh-sprint-1/blob/master/collable_logo.png"/>
+
 Collable is an initiative to improve education systems and support not just Students but also Professors. 
 There are hundreds of valuable education apps which are mostly student centric. The educational apps generally do not constitute to the school grading system. If a student is brilliant and performs well in the assignments online other than school, they aren't able to improve their academic grades with that. 
 
